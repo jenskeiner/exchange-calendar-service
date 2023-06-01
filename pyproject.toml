@@ -3,33 +3,100 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-name = "<package name>"
-version = "<version>"
-description = "<description>"
+name = "exchange-calendar-service"
+version = "0"
+description = "A simple HTTP-based web service to query exchange calendars."
 license = "Apache-2.0"
 authors = ["Jens Keiner <jens.keiner@gmail.com>"]
 readme = "README.md"
-homepage = "https://github.com/jenskeiner/<repository name>/"
-repository = "https://github.com/jenskeiner/<repository name>/"
-documentation = "https://github.com/jenskeiner/<repository name>/tree/main/docs/"
-keywords = ["keywords..."]
+homepage = "https://github.com/jenskeiner/exchange_calendar_service/"
+repository = "https://github.com/jenskeiner/exchange_calendar_service/"
+documentation = "https://github.com/jenskeiner/exchange_calendar_service/tree/main/docs/"
+keywords = ["exchange", "calendar", "trading", "holidays"]
 classifiers = [
 	"Development Status :: 4 - Beta",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "License :: OSI Approved :: Apache Software License",
     "Intended Audience :: Science/Research",
     "Topic :: Scientific/Engineering",
     "Topic :: Scientific/Engineering :: Mathematics",
     "Operating System :: OS Independent",
 ]
-packages = [{include = "<package name>"}]
+packages = [{include = "exchange_calendar_service"}]
 
 [tool.poetry.dependencies]
-python = "~=3.8"
+python = "~=3.9"
+exchange-calendars = "^4.0.1"
+exchange-calendars-extensions = "^0.8.2"
+fastapi = "^0"
+uvicorn = "^0"
+pyyaml = "^6.0.1"
+pydantic = "^2.1.1"
+pydantic-settings = "^2.0.3"
+myers = "^1.0.1"
+cachetools = "^5.3.2"
+pytz = "*"
+frozendict = "^2.4.0"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "~=7.2.1"
+pytest = "~=7.3.1"
+pytest-mock = "~=3.11.1"
+pytest-cov = "~=4.1.0"
+freezegun = "~=1.2.1"
+pre-commit = ">=3.3.3,<3.8.0"
+
+#[tool.pytest.ini_options]
+#addopts = "--cov=exchange_calendars_extensions --cov-report=term-missing"
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+
+# Same as Black.
+line-length = 120
+
+# Assume Python 3.9.
+target-version = "py39"
+
+
+[lint]
+# Enable pycodestyle (`E`) and Pyflakes (`F`) codes by default.
+select = ["E", "F"]
+ignore = ["E501"]
+
+# Allow autofix for all enabled rules (when `--fix`) is provided.
+fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+unfixable = []
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+# Unlike Flake8, default to a complexity level of 10.
+mccabe = 10
