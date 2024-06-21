@@ -1,0 +1,28 @@
+# Maps time zones names of the form Continent/City to standardised short names. For example, instead of using a
+# different names like Europe/Madrid and Europe/Berlin, we prefer to use CET in both cases.
+standardised_tz_names = {
+    "Europe/Madrid": "CET",
+    "Europe/Amsterdam": "CET",
+    "Europe/Brussels": "CET",
+    "Europe/Budapest": "CET",
+    "Europe/Copenhagen": "CET",
+    "Europe/Dublin": "WET",
+    "Europe/Berlin": "CET",
+    "Europe/Helsinki": "EET",
+    "Europe/Lisbon": "WET",
+    "Europe/London": "WET",
+    "Europe/Rome": "CET",
+    "Europe/Oslo": "CET",
+    "Europe/Paris": "CET",
+    "Europe/Stockholm": "CET",
+    "Europe/Zurich": "CET",
+    "Europe/Vienna": "CET",
+    "Europe/Warsaw": "CET",
+    "Europe/Athens": "EET",
+    "Europe/Prague": "CET",
+    "Europe/Istanbul": "TRT",
+    "Africa/Johannesburg": "SAST",
+    "Asia/Jerusalem": "IST",
+    "America/New_York": "ET",
+    "America/Toronto": "ET",
+}
