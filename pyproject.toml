@@ -45,7 +45,7 @@ frozendict = "^2.4.0"
 pytest = "~=8.2.2"
 pytest-mock = "~=3.14.0"
 pytest-cov = "~=5.0.0"
-freezegun = "~=1.2.1"
+freezegun = "~=1.5.1"
 pre-commit = ">=3.3.3,<3.8.0"
 
 #[tool.pytest.ini_options]
