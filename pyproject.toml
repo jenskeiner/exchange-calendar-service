@@ -17,8 +17,6 @@ classifiers = [
 	"Development Status :: 4 - Beta",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "License :: OSI Approved :: Apache Software License",
@@ -30,7 +28,7 @@ classifiers = [
 packages = [{include = "exchange_calendar_service"}]
 
 [tool.poetry.dependencies]
-python = "~=3.9"
+python = "~=3.11"
 exchange-calendars = "^4.0.1"
 exchange-calendars-extensions = "^0.8.2"
 fastapi = "^0"
@@ -83,7 +81,7 @@ exclude = [
 line-length = 120
 
 # Assume Python 3.9.
-target-version = "py39"
+target-version = "py311"
 
 
 [lint]
