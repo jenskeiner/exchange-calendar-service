@@ -1,0 +1,28 @@
+# A workflow that is scheduled daily and carries out maintenance tasks.
+name: Maintenance
+
+on:
+  #schedule:
+  #  - cron: '0 0 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  # A job to delete obsolete package versions (container images) from the GitHub registry.
+  delete_container_images:
+    runs-on: ubuntu-latest
+
+    permissions:
+      packages: write
+
+    steps:
+      - name: Delete old package versions.
+        uses: jenskeiner/ghcr-cleanup-action@v1
+        with:
+          tags: ''
+          exclude-tags: '^main|master|develop$' #|pr-\d+
+          keep-n-tagged: 1
+          keep-n-untagged: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+          dry-run: true
+          #validate: true
+          log-level: debug
