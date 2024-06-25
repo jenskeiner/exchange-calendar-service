@@ -1,0 +1,30 @@
+# A workflow that is scheduled daily and carries out maintenance tasks.
+name: Maintenance
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  # A job to delete obsolete package versions (container images) from the GitHub registry.
+  delete_container_images:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/delete-package-versions@v5
+        with:
+          package-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          package-type: container
+          delete-only-untagged-versions: true
+          min-versions-to-keep: 0
+
