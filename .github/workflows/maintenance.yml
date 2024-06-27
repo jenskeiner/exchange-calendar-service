@@ -2,8 +2,8 @@
 name: Maintenance
 
 on:
-  schedule:
-    - cron: '0 0 * * *'
+  #schedule:
+  #  - cron: '0 0 * * *'
   workflow_dispatch: {}
 
 jobs:
@@ -18,7 +18,10 @@ jobs:
       - name: Delete old package versions.
         uses: jenskeiner/ghcr-cleanup-action@v1
         with:
-          exclude-tags: 'main,master,develop'
-          keep-n-tagged: 3
+          tags: '^pr-\d+$'
+          exclude-tags: '^main|master|develop|feature-add-dockerfiles$'
+          keep-n-tagged: 1
           token: ${{ secrets.GITHUB_TOKEN }}
+          dry-run: true
+          validate: true
           log-level: debug
