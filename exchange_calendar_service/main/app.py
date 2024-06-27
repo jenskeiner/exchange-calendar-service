@@ -1,3 +1,5 @@
+import importlib
+import importlib.metadata
 import logging
 from enum import Enum
 
@@ -25,7 +27,6 @@ def app() -> FastAPI:
     # If _settings.init is not None, try to import it. Once imported. check if it is a callable with zero arguments.
     # If so, call it. Otherwise, raise an Exception and exit. Use importlib to import the callable.
     if settings.init:
-        import importlib
         import inspect
 
         # Split into module and callable name.
@@ -60,8 +61,13 @@ def app() -> FastAPI:
 
     # Initialize app context.
     _ = Context(cache=ExchangeCalendarCache(Exchanges.__members__.keys()))
+    
+    try:
+        version = importlib.metadata.version("exchange_calendar_service")
+    except importlib.metadata.PackageNotFoundError:
+        version = "unknown"
 
-    app = FastAPI()
+    app = FastAPI(title="Exchange Calendar Service", version=version, description="A RESTful HTTP Service.")
 
     router_v1: fastapi.APIRouter = get_router(Exchanges)
 
