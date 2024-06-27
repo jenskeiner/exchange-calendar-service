@@ -21,3 +21,4 @@ jobs:
           exclude-tags: 'main,master,develop'
           keep-n-tagged: 3
           token: ${{ secrets.GITHUB_TOKEN }}
+          log-level: debug
