@@ -20,8 +20,8 @@ jobs:
         with:
           tags: '^pr-\d+$'
           exclude-tags: '^main|master|develop|feature-add-dockerfiles$'
-          keep-n-tagged: 1
+          #keep-n-tagged: 1
           token: ${{ secrets.GITHUB_TOKEN }}
           dry-run: true
-          validate: true
+          #validate: true
           log-level: debug
