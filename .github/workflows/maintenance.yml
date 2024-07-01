@@ -22,6 +22,6 @@ jobs:
           exclude-tags: '^main|master|develop|feature-add-dockerfiles$'
           keep-n-untagged: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-          dry-run: true
+          dry-run: false
           #validate: true
           log-level: debug
