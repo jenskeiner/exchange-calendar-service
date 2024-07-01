@@ -18,8 +18,8 @@ jobs:
       - name: Delete old package versions.
         uses: jenskeiner/ghcr-cleanup-action@v1
         with:
-          tags: '^pr-\d+$'
-          exclude-tags: '^main|master|develop|feature-add-dockerfiles$'
+          tags: ''
+          exclude-tags: '^main|master|develop|pr-\d+$'
           keep-n-untagged: 0
           token: ${{ secrets.GITHUB_TOKEN }}
           dry-run: false
