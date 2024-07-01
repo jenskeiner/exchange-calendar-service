@@ -20,7 +20,7 @@ jobs:
         with:
           tags: '^pr-\d+$'
           exclude-tags: '^main|master|develop|feature-add-dockerfiles$'
-          keep-n-untagged: 5
+          keep-n-untagged: 0
           token: ${{ secrets.GITHUB_TOKEN }}
           dry-run: true
           #validate: true
