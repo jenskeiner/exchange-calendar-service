@@ -18,11 +18,9 @@ jobs:
       - name: Delete old package versions.
         uses: jenskeiner/ghcr-cleanup-action@v1
         with:
-          tags: ''
-          exclude-tags: '^main|master|develop$' #|pr-\d+
-          keep-n-tagged: 1
-          keep-n-untagged: 0
+          tags: ''  # Don't delete any specific tags.
+          exclude-tags: '^main|master|develop|\d+(?:\.\d+){0,2}$'  # Don't delete main, master, develop, and semantic version tags.
+          keep-n-tagged: 3  # Keep a number of the most recent remaining tags.
+          keep-n-untagged: 0  # Delete all untagged images.
           token: ${{ secrets.GITHUB_TOKEN }}
           dry-run: true
-          #validate: true
-          log-level: debug
