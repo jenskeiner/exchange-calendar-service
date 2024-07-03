@@ -19,9 +19,10 @@ jobs:
         uses: jenskeiner/ghcr-cleanup-action@v1
         with:
           tags: ''
-          exclude-tags: '^main|master|develop|pr-\d+$'
+          exclude-tags: '^main|master|develop$' #|pr-\d+
+          keep-n-tagged: 1
           keep-n-untagged: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-          dry-run: false
+          dry-run: true
           #validate: true
           log-level: debug
