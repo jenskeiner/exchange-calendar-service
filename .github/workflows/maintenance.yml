@@ -2,8 +2,8 @@
 name: Maintenance
 
 on:
-  #schedule:
-  #  - cron: '0 0 * * *'
+  schedule:
+    - cron: '0 0 * * *'
   workflow_dispatch: {}
 
 jobs:
@@ -19,8 +19,8 @@ jobs:
         uses: jenskeiner/ghcr-cleanup-action@v1
         with:
           tags: ''  # Don't delete any specific tags.
-          exclude-tags: '^main|master|develop|\d+(?:\.\d+){0,2}$'  # Don't delete main, master, develop, and semantic version tags.
+          exclude-tags: '^main|master|develop|\d+(?:\.\d+){0,2}|pr-\d+$'  # Don't delete main, master, develop, semantic version tags, and pull request tags.
           keep-n-tagged: 3  # Keep a number of the most recent remaining tags.
           keep-n-untagged: 0  # Delete all untagged images.
           token: ${{ secrets.GITHUB_TOKEN }}
-          dry-run: true
+          dry-run: false  # Actually delete images.
