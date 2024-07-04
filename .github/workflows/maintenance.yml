@@ -23,4 +23,4 @@ jobs:
           keep-n-tagged: 3  # Keep a number of the most recent remaining tags.
           keep-n-untagged: 0  # Delete all untagged images.
           token: ${{ secrets.GITHUB_TOKEN }}
-          dry-run: false  # Actually delete images.
+          dry-run: true  # Actually delete images.
