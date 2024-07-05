@@ -15,12 +15,14 @@ jobs:
       packages: write
 
     steps:
-      - name: Delete old package versions.
-        uses: jenskeiner/ghcr-cleanup-action@v1
+      - name: Delete obsolete package versions.
+        uses: jenskeiner/ghcr-container-repository-cleanup-action@v1.0.0
         with:
-          tags: ''  # Don't delete any specific tags.
-          exclude-tags: '^main|master|develop|\d+(?:\.\d+){0,2}|pr-\d+$'  # Don't delete main, master, develop, semantic version tags, and pull request tags.
-          keep-n-tagged: 3  # Keep a number of the most recent remaining tags.
-          keep-n-untagged: 0  # Delete all untagged images.
+          # Don't delete main, master, develop, semantic version tags, and pull request tags.
+          exclude-tags: '^main|master|develop|\d+(?:\.\d+){0,2}|pr-\d+$'
+          # Do not keep any other tags.
+          keep-n-tagged: 0
+          # Do not keep any other images.
+          keep-n-untagged: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-          dry-run: true  # Actually delete images.
+          dry-run: true
