@@ -25,4 +25,3 @@ jobs:
           # Do not keep any other images.
           keep-n-untagged: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-          dry-run: true
