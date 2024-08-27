@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: Delete obsolete package versions.
-        uses: jenskeiner/ghcr-container-repository-cleanup-action@v1.2.0
+        uses: jenskeiner/ghcr-container-repository-cleanup-action@debug
         with:
           # Don't delete main, master, develop, semantic version tags, and pull request tags.
-          exclude-tags: '^main|master|develop|\d+(?:\.\d+){0,2}|pr-\d+$'
+          exclude-tags: '^(?:main|master|develop|buildcache|\d+(?:\.\d+){0,2}|pr-\d+)$'
           # Do not keep any other tags.
           keep-n-tagged: 0
           # Do not keep any other images.
