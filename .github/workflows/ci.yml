@@ -76,4 +76,4 @@ jobs:
           file: ./docker/develop.dockerfile
           platforms: linux/amd64, linux/arm64
           labels: ${{ steps.meta.outputs.labels }}
-          tags: ${{ steps.meta.outputs.version }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.meta.outputs.version }}
