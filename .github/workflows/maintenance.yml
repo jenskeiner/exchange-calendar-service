@@ -6,6 +6,10 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch: {}
 
+concurrency:
+  group: package-repository
+  cancel-in-progress: false
+
 jobs:
   # A job to delete obsolete package versions (container images) from the GitHub registry.
   delete_container_images:

@@ -5,6 +5,10 @@ on:
   pull_request:
     types: [ closed ]
 
+concurrency:
+  group: package-repository
+  cancel-in-progress: false
+
 jobs:
   # A job to delete package versions (container images) from the GitHub registry related to the PR.
   delete_container_images:
