@@ -1,0 +1,60 @@
+# This file contains a dictionary of ad-hoc changes to be applied to exchange calendars.
+#
+# Keys are calendar names (e.g. XNYS, XAMS, etc.) and values are dictionaries of
+# changes to be applied to the calendar.
+#
+# Example:
+#
+#XETR:
+#  add:
+#    - date: 2023-12-18
+#      type: holiday
+#      name: Added Holiday 1
+#    - date: 2023-12-19
+#      type: holiday
+#      name: Added Holiday 2
+#    - date: 2023-11-01
+#      type: special_open
+#      name: Added Special Open 1
+#      time: "10:00"
+#    - date: 2023-11-02
+#      type: special_open
+#      name: Added Special Open 2
+#      time: "11:00"
+#    - date: 2023-10-02
+#      type: special_close
+#      name: Added Special Close 1
+#      time: "10:00"
+#    - date: 2023-10-04
+#      type: special_close
+#      name: Added Special Close 2
+#      time: "11:00"
+#  remove:
+#    - 2023-12-25
+
+XLON:
+  add:
+    - date: 2023-12-18
+      type: holiday
+      name: Added Holiday 1
+    - date: 2023-12-19
+      type: holiday
+      name: Added Holiday 2
+    - date: 2023-11-01
+      type: special_open
+      name: Added Special Open 1
+      time: "10:00"
+    - date: 2023-11-02
+      type: special_open
+      name: Added Special Open 2
+      time: "11:00"
+    - date: 2023-10-02
+      type: special_close
+      name: Added Special Close 1
+      time: "10:00"
+    - date: 2023-10-04
+      type: special_close
+      name: Added Special Close 2
+      time: "11:00"
+  remove:
+    - 2023-12-25

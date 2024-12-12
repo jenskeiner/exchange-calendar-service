@@ -1,0 +1,69 @@
+ARG PYTHON_VERSION=3.12.4
+ARG VERSION
+
+
+# Base image to use for builder and final images.
+FROM python:${PYTHON_VERSION}-slim-bookworm AS base
+
+# Set environment varibles.
+ENV DEBIAN_FRONTEND=noninteractive
+# Run OS upgrades.
+RUN apt-get update -y -q \
+    && apt-get upgrade -y -q \
+    && apt-get clean -y -q \
+    && rm -rf /var/lib/apt/lists/*
+
+
+# Builder image.
+FROM base AS builder
+
+ENV PATH=/root/.cargo/bin:$PATH
+
+WORKDIR /root/app
+
+RUN --mount=type=cache,target=/root/.cache/uv \
+    apt-get update -y -q \
+    && apt-get install -y -q curl build-essential python3-dev libssl-dev libffi-dev \
+    && apt-get clean -y -q \
+    && curl https://sh.rustup.rs -sSf | sh -s -- -y \
+    && pip install --upgrade pip \
+    && pip install poetry==1.8.3 poetry-plugin-export==1.8.0 \
+    && python -m venv /opt/venv
+
+#    && apt-get install -y -q curl build-essential python3.12-dev libssl-dev libffi-dev \
+#    && apt-get clean -y -q \
+#    && rm -rf /var/lib/apt/lists/* \
+#    && curl -LsSf https://astral.sh/uv/0.2.13/install.sh | sh \
+
+ENV VIRTUAL_ENV=/opt/venv \
+    PATH=/opt/venv/bin:$PATH
+
+COPY --link . .
+
+ARG VERSION=0.0.0.dev0
+
+RUN --mount=type=cache,target=/root/.cache/uv \
+    poetry export --format requirements.txt --output requirements.txt \
+    && poetry version ${VERSION} \
+    && pip install -r requirements.txt \
+    && poetry install --only-root \
+    && pip install dumb-init==1.2.5.post1
+
+
+FROM base AS final
+
+ENV VIRTUAL_ENV=/opt/venv \
+    PATH=/opt/venv/bin:$PATH
+
+EXPOSE 8000
+
+# Add unpriviledged user.
+RUN adduser --disabled-password app
+
+USER app
+WORKDIR /app
+
+COPY --from=builder --link /opt/venv /opt/venv
+
+ENTRYPOINT ["/opt/venv/bin/dumb-init", "--"]
+CMD ["uvicorn", "--host", "0.0.0.0", "--port", "8000", "--factory", "exchange_calendar_service.main.app:app"]
