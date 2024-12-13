@@ -30,7 +30,7 @@ packages = [{include = "exchange_calendar_service"}]
 [tool.poetry.dependencies]
 python = "~=3.11"
 exchange-calendars = "^4.6"
-exchange-calendars-extensions = "^0.8.2"
+exchange-calendars-extensions = "^0.8.3"
 fastapi = "^0"
 pyyaml = "^6.0.2"
 pydantic = "^2.10.3"
