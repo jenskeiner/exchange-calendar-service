@@ -194,13 +194,13 @@ dev = ["flake8", "hypothesis", "pip-tools", "pytest", "pytest-benchmark", "pytes
 
 [[package]]
 name = "exchange-calendars-extensions"
-version = "0.8.2"
+version = "0.8.3"
 description = "Extensions of the exchange-calendars package"
 optional = false
-python-versions = "<4.0,>=3.9"
+python-versions = ">=3.10"
 files = [
-    {file = "exchange_calendars_extensions-0.8.2-py3-none-any.whl", hash = "sha256:fb4e6973275e51a9616123dfbfc3305bfa9b367e5672f9b550a83262eb33374a"},
-    {file = "exchange_calendars_extensions-0.8.2.tar.gz", hash = "sha256:c46e5b9460d26d4bad1b0da31356e0ecdbb1e4d622a727179d842ecb462c90ac"},
+    {file = "exchange_calendars_extensions-0.8.3-py3-none-any.whl", hash = "sha256:a580b0f9564d3f705cc023c346713319b6f58c92853b9179d21b95bec00cc295"},
+    {file = "exchange_calendars_extensions-0.8.3.tar.gz", hash = "sha256:894c8ad06ba9e24f4e62809a457dd57c5b1c0ee78e9e8e99e45653253525ebfc"},
 ]
 
 [package.dependencies]
@@ -1060,4 +1060,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.0"
 python-versions = "~=3.11"
-content-hash = "7cf14004ea76003a5165894b3ce057ef2f5935a9c9898c4a035ae137ec85525a"
+content-hash = "f76d1121c48d918a23438c2409a2aedd1d713b42a7117d238b95d11094c625e0"
